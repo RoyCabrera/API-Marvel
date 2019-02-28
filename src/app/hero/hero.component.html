@@ -1,0 +1,19 @@
+<h1 class="text-center pb-5 ">Heroes de Marvel</h1>
+  <form #formhero="ngForm" (ngSubmit)="buscar(formhero)" class="form-inline">
+      <input type="text" class="form-control" requerid name="hero" #hero="ngModel" [(ngModel)]="buscarhero">
+      <input type="submit" [disabled]="!formhero.form.valid" class="ml-2 btn btn-outline-primary">
+  </form>
+    <div class="row" *ngIf="heros;else sinResultado">
+      <div class="col-sm-4 p-4" *ngFor="let hero of heros">
+          <h4 class=""> {{ hero.name }}</h4>
+         <div class="hero-img">
+          <img class="thumbnail" src="{{ hero.thumbnail.path+'/portrait_uncanny.'+hero.thumbnail.extension}}" alt="">
+          <p class="description">{{ hero.description }}</p>
+         </div>
+      </div>
+
+    </div>
+    <ng-template #sinResultado>Sin resultado</ng-template>
+
+
+
