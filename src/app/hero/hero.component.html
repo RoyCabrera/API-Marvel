@@ -1,19 +1,26 @@
-<h1 class="text-center pb-5 ">Heroes de Marvel</h1>
+<h1 class="title center has-text-centered">Heroes de Marvel</h1>
   <form #formhero="ngForm" (ngSubmit)="buscar(formhero)" class="form-inline">
-      <input type="text" class="form-control" requerid name="hero" #hero="ngModel" [(ngModel)]="buscarhero">
-      <input type="submit" [disabled]="!formhero.form.valid" class="ml-2 btn btn-outline-primary">
+      <div class="columns">
+        <div class="column is-half">
+            <input type="text" class="input is-rounded is-success" requerid name="hero" #hero="ngModel" [(ngModel)]="buscarhero">
+        </div>
+        <div class=" column is-half">
+            <input type="submit" [disabled]="!formhero.form.valid" class="button is-primary is-outlined">
+        </div>
+      </div>
   </form>
-    <div class="row" *ngIf="heros;else sinResultado">
-      <div class="col-sm-4 p-4" *ngFor="let hero of heros">
-          <h4 class=""> {{ hero.name }}</h4>
-         <div class="hero-img">
+
+  <div class="columns is-multiline" *ngIf="heros;else sinResultado">
+    <div  class="column is-one-third"  *ngFor="let hero of heros">
+        <h4> {{ hero.name }}</h4>
+        <div class="hero-img">
           <img class="thumbnail" src="{{ hero.thumbnail.path+'/portrait_uncanny.'+hero.thumbnail.extension}}" alt="">
           <p class="description">{{ hero.description }}</p>
-         </div>
-      </div>
-
+        </div>
     </div>
-    <ng-template #sinResultado>Sin resultado</ng-template>
+  </div>
+
+  <ng-template #sinResultado>Cargando...</ng-template>
 
 
 
